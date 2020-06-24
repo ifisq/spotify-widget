@@ -2,7 +2,7 @@
 This is an application/iOS 14 widget I wrote to display your Now Playing Spotify song! 
 
 ### Preface
-This widget isn't meant for general usage yet. It serves more as a proof of concept, and a demonstration of what you can do with WidgetKit! There's still a few issues with WidgetKit (because it's only 2 days old!), and that leads to the widget crashing from time to time. If you have suggestions or want updates on the widget, check out my Twitter [here](https://twitter.com/ifisq)!
+This widget isn't meant for general usage yet. It serves more as a proof of concept, and a demonstration of what you can do with WidgetKit! If you'd like to take a look at the widget's code, click [here](sqwidget/sqwidget.swift). There's still a few issues with WidgetKit (because it's only 2 days old!), and that leads to the widget crashing from time to time. If you have suggestions or want updates on the widget, check out my Twitter [here](https://twitter.com/ifisq)!
 
 ### Installation
 

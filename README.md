@@ -18,7 +18,7 @@ Note: I haven't had a chance to test this process out on another device, so if I
 ### Known Bugs
 ```WARNING! Sole personality requested when nil; THIS MAY BE A SPURIOUS LAUNCH OF THE PLUGIN due to a message to an XPC endpoint other than the main service endpoint; personalities```
 
-This is an issue with WidgetKit. Just keep trying to build/run the app or extension until it works properly on your phone (it'll work eventually!).
+To the best of my knowledge, this is an issue with WidgetKit. Just keep trying to build/run the app or extension until it works properly on your phone (it'll work eventually!).
 
 ### Images
 <img src="https://i.imgur.com/Ptkd1Ud.jpg" width="500">

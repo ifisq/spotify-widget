@@ -15,6 +15,13 @@ This widget isn't meant for general usage yet. It serves more as a proof of conc
 
 Note: I haven't had a chance to test this process out on another device, so if I'm missing any steps, please let me know!
 
+### Usage
+
+1. Open the CustomWidgets application
+2. Click login with Spotify
+3. Give the application permission to access your Spotify data
+4. Success! Try adding a widget to the homescreen.
+
 ### Known Bugs
 ```WARNING! Sole personality requested when nil; THIS MAY BE A SPURIOUS LAUNCH OF THE PLUGIN due to a message to an XPC endpoint other than the main service endpoint; personalities```
 

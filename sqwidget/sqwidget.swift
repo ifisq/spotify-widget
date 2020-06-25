@@ -9,25 +9,29 @@ import WidgetKit
 import SwiftUI
 import CoreData
 
+let defaultImageColors = UIImageColors(background: UIColor.black, primary: UIColor.white, secondary: UIColor.blue, detail: UIColor.purple)
+
 struct PlaceholderView : View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Now Playing")
                 .font(.system(.title3))
                 .foregroundColor(.black)
-            Text("Song")
+            Text("Please login on app!")
                 .font(.system(.subheadline))
                 .foregroundColor(.black)
                 .bold()
-            Text("by Arist\nReleased:01/01/0000")
+            Text("by Artist\nReleased:01/01/0000")
                 .font(.system(.caption))
                 .foregroundColor(.black)
             Text("Updated at \(Date())")
                 .font(.system(.caption2))
                 .foregroundColor(.black)
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-            .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [.orange, .red]), startPoint: .top, endPoint: .bottom))
+        .padding()
+        .background(Color.black)
+        .animation(.easeInOut)
+//            .background(LinearGradient(gradient: Gradient(colors: [.orange, .red]), startPoint: .top, endPoint: .bottom))
     }
 }
 
@@ -38,23 +42,25 @@ struct NowPlayingCheckerWidgetView : View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Now Playing")
                 .font(.system(.title3))
-                .foregroundColor(.black)
+                .foregroundColor(Color(entry.NowPlaying.imageColors.primary))
             Text(entry.NowPlaying.message)
                 .font(.system(.subheadline))
-                .foregroundColor(.black)
+                .foregroundColor(Color(entry.NowPlaying.imageColors.primary))
                 .bold()
             Text("by \(entry.NowPlaying.author)")
                 .font(.system(.caption))
-                .foregroundColor(.black)
+                .foregroundColor(Color(entry.NowPlaying.imageColors.primary))
             Text("Released: \(entry.NowPlaying.date)")
                 .font(.system(.caption))
-                .foregroundColor(.black)
+                .foregroundColor(Color(entry.NowPlaying.imageColors.secondary))
             Text("Updated at \(Self.format(date:entry.date))")
                 .font(.system(.caption2))
-                .foregroundColor(.black)
+                .foregroundColor(Color(entry.NowPlaying.imageColors.detail))
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-            .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [.orange, .red]), startPoint: .top, endPoint: .bottom))
+        .padding()
+        .background(Color(entry.NowPlaying.imageColors.background))
+        .animation(.easeInOut)
+//            .background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom))
     }
 
     static func format(date: Date) -> String {
@@ -68,11 +74,12 @@ struct NowPlaying {
     let message: String
     let author: String
     let date: String
+    let imageColors: UIImageColors
 }
 
 var in_progress = false
 
-var recent_NowPlaying: NowPlaying = NowPlaying(message: "Song", author: "Artist", date: "2020-06-23")
+var recent_NowPlaying: NowPlaying = NowPlaying(message: "Song", author: "Artist", date: "2020-06-23", imageColors: defaultImageColors)
 
 struct NowPlayingLoader {
     static func fetch(completion: @escaping (Result<NowPlaying, Error>) -> Void) {
@@ -111,31 +118,57 @@ struct NowPlayingLoader {
     }
 
     static func getNowPlayingInfo(fromData data: Foundation.Data) -> NowPlaying {
-        let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
         
         var songName = ""
         var artistName = ""
         var date = ""
+        var colors = defaultImageColors
         
-        let itemJSON: [String: Any]? = json["item"] as? [String: Any]
-        
-        if(itemJSON != nil) {
+        if (json != nil) {
+            let itemJSON: [String: Any]? = json!["item"] as? [String: Any]
             
-            let albumJSON = itemJSON!["album"] as! [String: Any]
+            if(itemJSON != nil) {
+                
+                let albumJSON = itemJSON!["album"] as! [String: Any]
 
-            songName = itemJSON!["name"] as! String
-            date = albumJSON["release_date"] as! String
-            let artists = itemJSON!["artists"] as! Array<Any>
+                songName = itemJSON!["name"] as! String
+                date = albumJSON["release_date"] as! String
+                let artists = itemJSON!["artists"] as! Array<Any>
 
-            let artist = artists[0] as! [String: Any]
-            artistName = artist["name"] as! String
+                let artist = artists[0] as! [String: Any]
+                artistName = artist["name"] as! String
+                
+                let images = albumJSON["images"] as! Array<Any>
+                let imageJSON = images[0] as! [String: Any]
+                let url = imageJSON["url"] as! String
+                
+                colors = getImageColors(url: URL(string: url)!)
+            }
+            
+            else {
+                print("INVALID JSON")
+            }
         }
 
-        return NowPlaying(message: songName, author: artistName, date: date)
+        return NowPlaying(message: songName, author: artistName, date: date, imageColors: colors)
     }
 }
 
-var currentNowPlaying: NowPlaying = NowPlaying(message: "Song", author: "Artist", date: "2020-06-24")
+func getImageColors(url: URL) -> UIImageColors {
+    let imageData = try? Data(contentsOf: url)
+    
+    if(imageData != nil) {
+        let colors = UIImage(data: imageData!)!.getColors()
+        
+        return colors!
+    }
+    else {
+        return defaultImageColors
+    }
+}
+
+var currentNowPlaying: NowPlaying = NowPlaying(message: "Song", author: "Artist", date: "2020-06-24", imageColors: defaultImageColors)
 var newRefreshDate: Date = Date()
 
 var initialized: Bool = false
@@ -144,7 +177,7 @@ struct NowPlayingTimeline: TimelineProvider {
     typealias Entry = LastNowPlayingEntry
     /* protocol methods implemented below! */
     public func snapshot(with context: Context, completion: @escaping (LastNowPlayingEntry) -> ()) {
-        let fakeNowPlaying = NowPlaying(message: "Fixed stuff", author: "John Appleseed", date: "2020-06-23")
+        let fakeNowPlaying = NowPlaying(message: "Fixed stuff", author: "John Appleseed", date: "2020-06-23", imageColors: defaultImageColors)
         let entry = LastNowPlayingEntry(date: Date(), NowPlaying: fakeNowPlaying)
         completion(entry)
     }
@@ -163,7 +196,7 @@ struct NowPlayingTimeline: TimelineProvider {
                 if case .success(let fetchedNowPlaying) = result {
                     nowplaying = fetchedNowPlaying
                 } else {
-                    nowplaying = NowPlaying(message: "Failed to load NowPlayings", author: "", date: "")
+                    nowplaying = NowPlaying(message: "Failed to load Now Playing", author: "", date: "", imageColors: defaultImageColors)
                 }
                 let entry = LastNowPlayingEntry(date: currentDate, NowPlaying: nowplaying)
                 let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
@@ -196,7 +229,7 @@ struct NowPlayingCheckerWidget: Widget {
         StaticConfiguration(kind: kind, provider: NowPlayingTimeline(), placeholder: PlaceholderView()) { entry in
             NowPlayingCheckerWidgetView(entry: entry)
         }
-        .configurationDisplayName("Swift's Latest NowPlaying")
-        .description("Shows the last NowPlaying at the Swift repo.")
+        .configurationDisplayName("Now Playing by Aryan Nambiar")
+        .description("Shows your Spotify Now Playing!")
     }
 }

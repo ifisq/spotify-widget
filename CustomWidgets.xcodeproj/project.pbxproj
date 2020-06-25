@@ -23,6 +23,8 @@
 		60CA3B8E24A1B6CF00704650 /* CoreDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CA3B8D24A1B6CF00704650 /* CoreDataType.swift */; };
 		60F7163C24A33BDC002E3075 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7163B24A33BDC002E3075 /* ViewController.swift */; };
 		60F7164024A33F62002E3075 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7163F24A33F61002E3075 /* SpotifyiOS.framework */; };
+		60F7166124A4242A002E3075 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7166024A42429002E3075 /* UIImageColors.swift */; };
+		60F7166324A4278C002E3075 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7166024A42429002E3075 /* UIImageColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,7 @@
 		60F7163E24A33E74002E3075 /* sqwidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sqwidgetExtension.entitlements; sourceTree = "<group>"; };
 		60F7163F24A33F61002E3075 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		60F7164124A34051002E3075 /* CustomWidgets-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CustomWidgets-Bridging-Header.h"; sourceTree = "<group>"; };
+		60F7166024A42429002E3075 /* UIImageColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				60CA3B6A24A1A9C800704650 /* sqwidget.swift */,
+				60F7166024A42429002E3075 /* UIImageColors.swift */,
 				60CA3B6C24A1A9CB00704650 /* Assets.xcassets */,
 				60CA3B6E24A1A9CB00704650 /* Info.plist */,
 			);
@@ -371,6 +375,7 @@
 				60F7163C24A33BDC002E3075 /* ViewController.swift in Sources */,
 				60CA3B3724A1A98100704650 /* CustomWidgets.xcdatamodeld in Sources */,
 				60CA3B2D24A1A98100704650 /* AppDelegate.swift in Sources */,
+				60F7166124A4242A002E3075 /* UIImageColors.swift in Sources */,
 				60CA3B8E24A1B6CF00704650 /* CoreDataType.swift in Sources */,
 				60CA3B2F24A1A98100704650 /* SceneDelegate.swift in Sources */,
 			);
@@ -397,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60CA3B6B24A1A9C800704650 /* sqwidget.swift in Sources */,
+				60F7166324A4278C002E3075 /* UIImageColors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

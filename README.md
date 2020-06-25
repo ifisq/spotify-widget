@@ -28,9 +28,4 @@ Note: I haven't had a chance to test this process out on another device, so if I
 To the best of my knowledge, this is an issue with WidgetKit. Just keep trying to build/run the app or extension until it works properly on your phone (it'll work eventually!).
 
 ### Video Demo
-[Twitter link](https://twitter.com/i/status/1275955672564355072)
-
-### Images
-<img src="https://i.imgur.com/Ptkd1Ud.jpg" width="500">
-<img src="https://i.imgur.com/1reLmnu.jpg" width="500">
-<img src="https://i.imgur.com/yn7A7ku.jpg" width="500">
+[Twitter link](https://video.twimg.com/ext_tw_video/1275955633620160512/pu/vid/592x1280/g5N-GuX1gDAAthwb.mp4?tag=10)

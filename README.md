@@ -4,6 +4,8 @@ This is an application/iOS 14 widget I wrote to display your Now Playing Spotify
 ### Preface
 This widget isn't meant for general usage yet. It serves more as a proof of concept, and a demonstration of what you can do with WidgetKit! If you'd like to take a look at the widget's code, click [here](sqwidget/sqwidget.swift). There's still a few issues with WidgetKit (because it's only 2 days old!), and that leads to the widget crashing from time to time. If you have suggestions or want updates on the widget, check out my [Twitter](https://twitter.com/ifisq)!
 
+Update: This widget will be bundled into my upcoming app, TuneTrack, which is designed to help you track your music statistics!
+
 ### Installation
 
 1. Download the GitHub source files.
@@ -26,6 +28,7 @@ Note: I haven't had a chance to test this process out on another device, so if I
 ```WARNING! Sole personality requested when nil; THIS MAY BE A SPURIOUS LAUNCH OF THE PLUGIN due to a message to an XPC endpoint other than the main service endpoint; personalities```
 
 To the best of my knowledge, this is an issue with WidgetKit. Just keep trying to build/run the app or extension until it works properly on your phone (it'll work eventually!).
+Update: This issue was fixed with a new release of an iOS 14.0 Developer Beta.
 
 ### Video Demo
 [Twitter link](https://twitter.com/i/status/1275955672564355072)

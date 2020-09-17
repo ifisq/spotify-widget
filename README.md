@@ -33,9 +33,4 @@ To the best of my knowledge, this is an issue with WidgetKit. Just keep trying t
 Update: This issue was fixed with a new release of an iOS 14.0 Developer Beta.
 
 ### Video Demo
-[Twitter link](https://twitter.com/i/status/1275955672564355072)
-
-### Images
-<img src="https://i.imgur.com/Ptkd1Ud.jpg" width="500">
-<img src="https://i.imgur.com/1reLmnu.jpg" width="500">
-<img src="https://i.imgur.com/yn7A7ku.jpg" width="500">
+[Twitter link](https://video.twimg.com/ext_tw_video/1275955633620160512/pu/vid/592x1280/g5N-GuX1gDAAthwb.mp4?tag=10)
